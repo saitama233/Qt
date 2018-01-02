@@ -2,6 +2,7 @@
 #include <QMenuBar>
 #include <QToolBar>
 #include <QMessageBox>
+#include <QDebug>
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -27,8 +28,29 @@ MainWindow::~MainWindow()
 {
 
 }
-
+/*
 void MainWindow::open()
 {
     QMessageBox::information(this, tr("Information"), tr("Open"));
 }
+*/
+
+//使用应用程序级别的模态对话框Dialog代替MessageBox
+void MainWindow::open()
+{
+    QDialog dialog(this);
+    dialog.setWindowTitle("Hello, dialog!");
+    dialog.exec();
+    qDebug() << dialog.result();
+}
+
+/*
+//非模态对话框
+void MainWindow::open()
+{
+    QDialog *dialog = new QDialog;
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->setWindowTitle("Hello, dialog");
+    dialog->show();
+}
+*/
