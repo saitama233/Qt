@@ -33,6 +33,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     textEdit = new QTextEdit(this);
     setCentralWidget(textEdit);
+
+    connect(textEdit, &QTextEdit::textChanged,
+            [=](){this->setWindowModified(true);})
 }
 
 MainWindow::~MainWindow()
